@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test fuse.js sur bar de recherche</title>
+</head>
+<body>
+
+
+    <div class="search-container" style="position: relative;">
+        <input type="search" id="searchInput" placeholder="Rechercher..." class="search-input">
+        <div id="suggestions" class="suggestions-container" style="position: relative; bottom: 0px;left: 0; width: 100%; overflow-y: auto;background-color: lightblue;"></div>
+    </div>
+
+
+    <h2>Les titres présent dans mon fichier .json</h2>
+    <ul>
+        <li>Backwards, Red Dwarf</li>
+        <li>The Grand Design</li>
+        <li>The Book of Samson</li>
+        <li>The Preservationist</li>
+        <li>Fallen</li>
+        <li>Monster 1959</li>
+    </ul>
+    
+    <script type="module" src="script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
+</body>
+</html>
