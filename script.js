@@ -1,18 +1,30 @@
+// EXPLICATION FUSE.JS ET MISE EN PRATIQUE PLUS DANS CETTE PAGE
 
 const search = document.querySelector("#searchInput");
-const containerSuggestion = document.querySelector(".suggestions-container")
+const divContainer = document.querySelector(".div")
+const divContainer2 = document.querySelector(".div2")
 
 
 window.addEventListener("load", createFetch)
 
+// appel fichier .json
 async function createFetch() {
 	const response = await fetch("./list.json");
-	console.log(response);
+	// console.log(response);
 	const data = await response.json();
-	console.log(data);
+	// console.log(data);
+
+	// creation de la liste de livres
+	data.forEach(title => {
+		
+		const div = document.createElement("div");
+		div.textContent = title.title;
+
+		divContainer.appendChild(div);
+	})
 
 
-	
+	// L'instanciation de fuse.js
 	const fuse = new Fuse(data, {keys : ['title'], includeScore: true});
 	console.log(fuse);
 	//On instancie un nouvelle objet avec deux parametres : notre fichier à regarder et l object d' utilitaire de fuse.
@@ -24,7 +36,7 @@ async function createFetch() {
 	//On y ajoute keys(=propriétées) : ["le nom des proprietees presentent dans notre fichier .json où l' on souhaite rechercher"] Syntaxe toujours dans un array et entre guillemets, ici j en ai mit qu une mais on peut en mettre plusieurs selon combien en contient notre .json ex: keys : ['title', 'name','age', ...]
 
 
-	const results = fuse.search('d');
+	const results = fuse.search('the b');
 	console.log(results);
 	//Ensuite on creer une const results. results renvoie un tableau dans lequel on y place le resultats du fitre fuse.js en fonction du match. Ici pour tester on a mit 'the b' mais après ce sera la recherche de l utilisateur. Il me propose 3 match . Voilà à quoi ça ressemble :
 
@@ -63,7 +75,7 @@ async function createFetch() {
 	// length: 3
 	// [[Prototype]]:  Array(0)
 
-	// grace à ca on vas pouvoir afficher nos objects ou non, ou proposer une bar de recherche plus smooth pour les utilisateurs les erreurs seront moins restrictivent.
+	// grace à ca on vas avoir une bar de recherche plus smooth et pouvoir afficher nos objects ou non, pour les utilisateurs les erreurs seront moins restrictivent.
 
 
 
@@ -72,45 +84,30 @@ async function createFetch() {
 
 
 
-	// CODE POUR CETTE PAGE
+	// MISE EN PRATIQUE POUR CETTE PAGE
 	search.addEventListener("input", function() {
-		const resu = fuse.search(this.value)
-		console.log(resu);
-		const titResu = resu.map(result => result.item.title);
-		console.log(titResu);
+		const resultat = fuse.search(this.value)
+		const titleResultat = resultat.map(result => result.item);
 
 		// permet de vider les valeurs précédente à chaque fois qu on ecoute l input
-		containerSuggestion.innerHTML=``;
+		divContainer2.innerHTML=``;
 
-		titResu.forEach(title => {
-			const listItem = document.createElement("div");
-			listItem.textContent = title;
-
-			listItem.addEventListener('click', () => {
-				search.value = title;
-				// Vide les suggetions une fois le choix cliqué.
-				containerSuggestion.innerHTML = '';
-			});
-
-			containerSuggestion.appendChild(listItem);
-
-		})
+		titleResultat.forEach(title => {
 		
-	})
+			const div = document.createElement("div");
+			div.textContent = title.title;
 	
-
-
+			divContainer2.appendChild(div);
+		});
+			
+	});
 
 }
 
 
-
+// Lien
 //https://www.fusejs.io/getting-started/installation.html
 //https://www.youtube.com/watch?v=GZl-yEz4_qw&list=LL&index=4
-
-
-
-// Pour mon projet restaurant je vais l appliquer sur ma bar de recherche. Sinon le mieux serait de creer un .json avec tous les plats puis d' appliquer le filtre avec l' aide de fuse.js sur le .json lui meme pour faire apparaitre ou disparaitre les items selon la recherche de l utilisateur. Mais vu qu on va voir PHP j' ai pas envie de perdre mon temps à appliquer ça sur mon projet restaurant mais je vais le faire à petite echelle peut être ici.
 
 
 
