@@ -32,7 +32,7 @@ async function createFetch() {
 
 	// data le fichier où regarder
 
-	// {vide} c'est l objet utilitaire de fuse, de base il contient deja des utilitaires, ect... on peut en rajouter d' autres selon nos besoins , pour savoir regarder sur le site. Ici j ai ajouter includeScore: true, il permet de voir le score de match du mot rechercher et les mot dans le .json.
+	// {vide} c'est l objet utilitaire de fuse, de base il contient deja des utilitaires, ect... on peut en rajouter d' autres selon nos besoins , pour savoir regarder sur le site : https://www.fusejs.io/api/options.html  . Ici j ai ajouter includeScore: true, il permet de voir le score de match du mot rechercher et les mot dans le .json.
 
 	//On y ajoute keys(=propriétées) : ["le nom des proprietees presentent dans notre fichier .json où l' on souhaite rechercher"] Syntaxe toujours dans un array et entre guillemets, ici j en ai mit qu une mais on peut en mettre plusieurs selon combien en contient notre .json ex: keys : ['title', 'name','age', ...]
 
