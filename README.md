@@ -1,6 +1,6 @@
 ﻿# fuse.js
 
-Exemple d' application du softFiltre fuse.js. J applique fuse sur la une liste afin de me faire des propositions de titre de livres.
+Exemple d' application du softFiltre fuse.js. J applique fuse sur une liste afin de me faire des propositions de titre de livres.
 
 [Site fuse.js](https://www.fusejs.io/getting-started/installation.html)
 
