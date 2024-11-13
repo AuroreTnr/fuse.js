@@ -24,6 +24,7 @@ async function createFetch() {
 	})
 
 
+	// EXEMPLE COURANT => l' exemple appliquer à cette page est plus bas.
 	// L'instanciation de fuse.js
 	const fuse = new Fuse(data, {keys : ['title'], includeScore: true});
 	console.log(fuse);
@@ -67,7 +68,7 @@ async function createFetch() {
 
 	const titleResult = results.map(result => result.item)
 	console.log(titleResult);
-	// Ici le but est de retourner nos objects .json. On va passer nos object dans un array en utilisant la methode map sur results. On passe en parametre une valeur courante puis on va prendre les items(ils contiennent nos objects .json) . Ca nous retourne un array comme ca : 
+	// Ici le but est de retourner nos objects .json. On va passer nos object dans un array en utilisant la methode map sur results. On passe en parametre une valeur courante puis on va prendre les items(car c' est eux qui contiennent nos objects .json) . Ca nous retourne un array comme ca : 
 	// 	(3) [{…}, {…}, {…}]
 	// 0: {title: 'The Book of Samson'}
 	// 1: {title: 'The Preservationist'}
@@ -76,7 +77,9 @@ async function createFetch() {
 	// [[Prototype]]:  Array(0)
 
 	// grace à ca on vas avoir une bar de recherche plus smooth et pouvoir afficher nos objects ou non, pour les utilisateurs les erreurs seront moins restrictivent.
+	// Ici je ne le fais pas mais on peut tout de même nettoyer la chaine de caratère de notre côté pour enlever les caractères spéciaux.
 
+	// Ensuite on utilise un foreach sur le tableau titleResult afin de creer une liste avec toutes les valeurs.
 
 
 
